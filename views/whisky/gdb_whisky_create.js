@@ -1,7 +1,16 @@
 (function () {
   const SUPABASE_URL = "https://dffqempnuqymcofvgkxx.supabase.co";
   const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImRmZnFlbXBudXF5bWNvZnZna3h4Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTk5OTY3NDMsImV4cCI6MjA3NTU3Mjc0M30.jHxiRy2Q2dQpvA-RuV3xcJsAy3hkDm6psYnOeNjY6pA";
-  const DEFAULT_IMAGE_URL = "/img/fallback_image.jpg";
+  function getAppBasePath() {
+    const path = window.location.pathname || "";
+    const repoSegment = "/Genussdatenbank/";
+    if (window.location.hostname.includes("github.io") && path.includes(repoSegment)) {
+      return repoSegment;
+    }
+    return "/";
+  }
+
+  const DEFAULT_IMAGE_URL = `${getAppBasePath()}img/fallback_image.jpg`;
   const FLAG_BASE_URL = "https://commons.wikimedia.org/wiki/Special:FilePath/";
 
   const COUNTRY_FLAG_MAP = {
