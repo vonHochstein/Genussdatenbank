@@ -105,6 +105,17 @@
     function notifyParentPopupClose(){
       window.parent?.postMessage({ type: "popup-close" }, "*");
     }
+
+    function getAppBasePath() {
+      const path = window.location.pathname || "";
+      const repoSegment = "/Genussdatenbank/";
+      if (window.location.hostname.includes("github.io") && path.includes(repoSegment)) {
+        return repoSegment;
+      }
+      return "/";
+    }
+
+    const DEFAULT_IMAGE_URL = `${getAppBasePath()}img/fallback_image.jpg`;
     // ==========================================================
     // 3) HELFER: Sterne, Durchschnitt, Stock-Farbe
     // ==========================================================
@@ -314,7 +325,7 @@ function renderList(list){
     const cardClass =
       (w.provisional ? "provisional" : (w.collector ? "collector" : ""));
 
-    const imgSrc = w.image_url || "../../img/fallback_image.jpg";
+    const imgSrc = w.image_url || DEFAULT_IMAGE_URL;
 
     // Bestand-Balken:
     // - mein Bestand: gdb_whisky_user.stock für CURRENT_UID (ml)
