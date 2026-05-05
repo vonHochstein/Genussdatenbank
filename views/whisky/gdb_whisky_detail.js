@@ -2206,7 +2206,7 @@ document.addEventListener("keydown", (e) => {
     "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImRmZnFlbXBudXF5bWNvZnZna3h4Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTk5OTY3NDMsImV4cCI6MjA3NTU3Mjc0M30.jHxiRy2Q2dQpvA-RuV3xcJsAy3hkDm6psYnOeNjY6pA";
   
   // Fallback-Bild-URL
-  const DEFAULT_IMAGE_URL = "/img/fallback_image.jpg";
+  const DEFAULT_IMAGE_URL = "../../img/fallback_image.jpg";
 
   // Fallback-Titel (falls Laden fehlschlägt)
   window.parent?.postMessage({ type: "set-title", value: "Whisky – Detailkarte" }, "*");
