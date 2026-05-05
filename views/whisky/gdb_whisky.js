@@ -314,7 +314,7 @@ function renderList(list){
     const cardClass =
       (w.provisional ? "provisional" : (w.collector ? "collector" : ""));
 
-    const imgSrc = w.image_url || "/img/fallback_image.jpg";
+    const imgSrc = w.image_url || "../../img/fallback_image.jpg";
 
     // Bestand-Balken:
     // - mein Bestand: gdb_whisky_user.stock für CURRENT_UID (ml)
