@@ -1,0 +1,15 @@
+.bottle-stock{
+  display:flex;
+  flex-direction:column;
+  gap:6px;
+}
+
+#detailBottleWrap{
+  width: 110px;   /* vorher 100 */
+  height: 160px;  /* vorher 180 */
+}
+
+.stock-text{
+  font-size: 13px;
+  opacity: .9;
+}

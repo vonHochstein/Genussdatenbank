@@ -1,0 +1,96 @@
+/* Sterne-Bewertung */
+:root{  --star-color: #d4af37; }
+body.dark{ --star-color: #d4af37; }
+
+:root{ --star-half-cut: 52%; } /* rechts x% wegschneiden */
+
+.stars { display:inline-block; font-size:1.05rem; line-height:1; color: var(--star-color); vertical-align:middle; }
+.star { cursor:pointer; display:inline-block; width:1.1em; position:relative; }
+
+/* leerer Stern (immer da) */
+.star::before{
+  content:'\2605';
+  opacity:0.32;
+}
+
+/* gefüllter Stern (Overlay) */
+.star::after{
+  content:'\2605';
+  position:absolute;
+  inset:0;
+  opacity:0;               /* default: nicht gefüllt */
+  color: var(--star-color);
+}
+
+/* voll gefüllt */
+.star.full::after{ opacity:1; }
+
+/* halb gefüllt: nur linke Hälfte des Overlays sichtbar */
+.star.half::after{
+  opacity:1;
+  clip-path: inset(0 var(--star-half-cut) 0 0);
+}
+
+.stars.readonly .star { cursor:default; }
+
+/* Klickbare Sterne im Bearbeitungsmodus (Detailkarte) */
+.detail-rating-edit{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  grid-column: 2 / span 2;
+  margin-top:0;
+  margin-left:0;
+  flex-wrap:nowrap;
+}
+
+.detail-rating-stars{
+  display:flex;
+  flex-wrap:nowrap;
+  gap:6px;
+  align-items:center;
+}
+
+.detail-rating-star-btn{
+  appearance:none;
+  -webkit-appearance:none;
+  border:none;
+  background:transparent;
+  color:var(--star-color);
+  cursor:pointer;
+  font:inherit;
+  font-size:1.2rem;
+  line-height:1;
+  padding:2px;
+  min-width:1.35em;
+  min-height:1.35em;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  border-radius:6px;
+  opacity:0.92;
+  transition:transform .08s ease, opacity .12s ease, box-shadow .12s ease, background-color .12s ease;
+}
+
+.detail-rating-star-btn:hover{
+  opacity:1;
+  transform:translateY(-1px);
+}
+
+.detail-rating-star-btn:focus-visible{
+  outline:none;
+  box-shadow:0 0 0 2px rgba(212,175,55,0.24);
+  background:rgba(212,175,55,0.08);
+}
+
+.detail-rating-star-btn[aria-checked="true"]{
+  opacity:1;
+}
+
+.detail-rating-edit-text{
+  min-width:48px;
+  font-size:0.95rem;
+  color:inherit;
+  opacity:0.9;
+  white-space:nowrap;
+}

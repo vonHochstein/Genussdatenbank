@@ -1,0 +1,211 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="../../gdb_style.css">
+  <link rel="stylesheet" href="../../gdb_components.css">
+  <link rel="stylesheet" href="gdb_whisky_detail.css">
+
+  <link rel="stylesheet" href="../../gdb_stars.css">
+  <link rel="stylesheet" href="../../gdb_stockbar.css">
+  <link rel="stylesheet" href="../../gdb_pli.css">
+  <link rel="stylesheet" href="../../gdb_stockbottle.css">
+
+  <title>Whisky – Neuer Eintrag</title>
+</head>
+<body>
+  <div class="detail-view"></div>
+    <div id="masterDataViewMode" data-edit-mode="on">
+    <div class="detail-wrap card">
+      <div class="detail-section-head">
+      </div>
+      <div class="detail-grid">
+
+        <div class="detail-image">
+          <div class="detail-image-wrap" id="whiskyImageWrap">
+            <img id="whiskyImage" class="detail-image" alt="" loading="lazy" decoding="async">
+          </div>
+          <div id="imageEditFields" class="detail-image-edit">
+            <label class="detail-image-edit-label" for="editImageUpload"><strong>Bild ändern:</strong></label>
+            <input type="file" id="editImageUpload" accept="image/*" class="detail-edit-field detail-edit-input" hidden style="display:none;">
+            <div class="detail-image-filepicker" style="display:flex; flex-direction:column">
+              <label for="editImageUpload" id="btnPickImage" class="detail-edit-btn detail-edit-btn-secondary">Datei auswählen</label>
+              <div id="editImageFileName" class="detail-edit-hint muted">Keine Datei ausgewählt</div>
+            </div>
+            <div class="detail-image-edit-actions">
+              <button type="button" id="btnDeleteImage" class="detail-edit-btn detail-edit-btn-secondary">Bild löschen</button>
+            </div>
+            <div id="imageEditHint" class="detail-edit-hint" hidden></div>
+          </div>
+          <div class="detail-image-badges">
+            <div id="whiskyCollectorBadge" class="collector-badge" style="display:none;" title="Sammlerflasche">
+              <img src="../../img/collectors_badge.png" alt="Sammlerflasche" class="collector-img">
+            </div>
+          </div>
+          <div id="whiskyProvisionalBadge" class="provisional-strip" hidden>Vorläufiger Eintrag</div>
+        </div>
+
+        <div class="detail-main">
+          <div class="detail-lines">
+            <div class="detail-card-title" id="whiskyName" style="display:none;">Neuer Whisky</div>
+            <div class="detail-subtitle" style="display:none;">
+              <span id="whiskyDistillery">Brennerei</span>
+              <span id="whiskyDot"> • </span>
+              <span id="whiskyBottler">Abfüller</span>
+            </div>
+            <div class="detail-meta-line muted" id="whiskyOriginLine" style="display:none;">
+              <img id="countryFlagImg" class="wiki-flag" alt="">
+              <img id="regionFlagImg" class="wiki-flag" alt="">
+              <span id="countryText">Land</span>
+              <span class="sep">-</span>
+              <span id="regionText">Region</span>
+            </div>
+            <div class="detail-meta-line" id="whiskyStatsLine" style="display:none;">
+              <span id="whiskyAge"></span>
+              <span class="sep" id="sepAgeVol">|</span>
+              <span id="whiskyVolume"></span>
+              <span class="sep" id="sepVolAbv">|</span>
+              <span id="whiskyAbv"></span>
+            </div>
+            <div class="detail-meta-line" id="whiskyCaskLine" style="display:none;">
+              <span class="meta-label">Fasstyp:</span>
+              <span id="whiskyCaskType"></span>
+            </div>
+            <div class="detail-meta-line" id="whiskyPriceLine" style="display:none;">
+              <span id="whiskyPrice"></span>
+            </div>
+            <div class="detail-meta-line" id="whiskyOutturnLine" style="display:none;">
+              <span class="meta-label">Flaschenauflage:</span>
+              <span id="whiskyOutturn"></span>
+            </div>
+
+            <div id="masterDataEditFields">
+              <p style="margin-top: 6px;">
+                <strong>Whiskyname:*</strong><br>
+                <input type="text" id="editWhiskyName" class="detail-edit-field detail-edit-input" autofocus>
+              </p>
+              <p style="margin-top: 6px;">
+                <strong>Brennerei:</strong><br>
+                <input type="text" id="editDistillery" class="detail-edit-field detail-edit-input">
+              </p>
+              <p style="margin-top: 6px;">
+                <strong>Abfüller:</strong><br>
+                <input type="text" id="editBottler" class="detail-edit-field detail-edit-input">
+              </p>
+              <p style="margin-top: 6px;">
+                <strong>Land:</strong><br>
+                <select id="editCountry" class="detail-edit-field detail-edit-input">
+                  <option value="">Land wählen …</option>
+                  <option value="Deutschland">Deutschland</option>
+                  <option value="Schottland">Schottland</option>
+                  <option value="Irland">Irland</option>
+                  <option value="Nordirland">Nordirland</option>
+                  <option value="USA">USA</option>
+                  <option value="Japan">Japan</option>
+                  <option value="Australien">Australien</option>
+                  <option value="Kanada">Kanada</option>
+                  <option value="Indien">Indien</option>
+                  <option value="Schweiz">Schweiz</option>
+                  <option value="Taiwan">Taiwan</option>
+                  <option value="Finnland">Finnland</option>
+                </select>
+              </p>
+              <p style="margin-top: 6px;">
+                <strong>Region:</strong><br>
+                <select id="editRegion" class="detail-edit-field detail-edit-input">
+                  <option value="">Region wählen …</option>
+                  <option value="Highlands">Highlands</option>
+                  <option value="Speyside">Speyside</option>
+                  <option value="Lowlands">Lowlands</option>
+                  <option value="Islay">Islay</option>
+                  <option value="Islands">Islands</option>
+                  <option value="Campbeltown">Campbeltown</option>
+                  <option value="Leinster">Leinster</option>
+                  <option value="Cork/ Munster">Cork/ Munster</option>
+                  <option value="Antrim">Antrim</option>
+                  <option value="Kentucky">Kentucky</option>
+                  <option value="Indiana">Indiana</option>
+                  <option value="Manitoba">Manitoba</option>
+                  <option value="Victoria/ Melbourne">Victoria/ Melbourne</option>
+                  <option value="Baden-Württemberg">Baden-Württemberg</option>
+                  <option value="Bayern">Bayern</option>
+                  <option value="Berlin">Berlin</option>
+                  <option value="Brandenburg">Brandenburg</option>
+                  <option value="Bremen">Bremen</option>
+                  <option value="Hamburg">Hamburg</option>
+                  <option value="Hessen">Hessen</option>
+                  <option value="Mecklenburg-Vorpommern">Mecklenburg-Vorpommern</option>
+                  <option value="Niedersachsen">Niedersachsen</option>
+                  <option value="Nordrhein-Westfalen">Nordrhein-Westfalen</option>
+                  <option value="Rheinland-Pfalz">Rheinland-Pfalz</option>
+                  <option value="Saarland">Saarland</option>
+                  <option value="Sachsen">Sachsen</option>
+                  <option value="Sachsen-Anhalt">Sachsen-Anhalt</option>
+                  <option value="Schleswig-Holstein">Schleswig-Holstein</option>
+                  <option value="Thüringen">Thüringen</option>
+                </select>
+                <div id="editFlagPreview" style="display:flex; gap:10px; align-items:center; margin-top:6px; min-height:22px;">
+                  <img id="editCountryFlagPreview" alt="Landesflagge Vorschau" style="display:none; height:16px; width:auto; border:1px solid rgba(0,0,0,0.12); border-radius:2px;">
+                  <img id="editRegionFlagPreview" alt="Regionsflagge Vorschau" style="display:none; height:16px; width:auto; border:1px solid rgba(0,0,0,0.12); border-radius:2px;">
+                </div>
+                <input type="hidden" id="editFlagUrl">
+                <input type="hidden" id="editRegionFlagUrl">
+              </p>
+              <p style="margin-top: 6px;">
+                <strong>Alter (Jahre):</strong><br>
+                <input type="number" id="editAgeYears" class="detail-edit-field detail-edit-input" min="0" step="1" inputmode="numeric">
+                <label style="display:block; margin-top:4px; font-size:0.85em;">
+                  <input type="checkbox" id="editIsNas">
+                  NAS (No Age Statement)
+                </label>
+              </p>
+              <p style="margin-top: 6px;">
+                <strong>Volumen (ml):</strong><br>
+                <input type="number" id="editVolumeMl" class="detail-edit-field detail-edit-input" min="0" step="1" inputmode="numeric">
+              </p>
+              <p style="margin-top: 6px;">
+                <strong>ABV (% vol.):</strong><br>
+                <input type="number" id="editAbv" class="detail-edit-field detail-edit-input" min="0" step="0.01" inputmode="decimal">
+              </p>
+              <p style="margin-top: 6px;">
+                <strong>Fasstyp:</strong><br>
+                <input type="text" id="editCaskType" class="detail-edit-field detail-edit-input">
+              </p>
+              <p style="margin-top: 6px;">
+                <strong>Preis (€):</strong><br>
+                <input type="number" id="editPriceEur" class="detail-edit-field detail-edit-input" min="0" step="0.01" inputmode="decimal">
+              </p>
+              <p style="margin-top: 6px;">
+                <strong>Flaschenauflage:</strong><br>
+                <input type="number" id="editBottleOutturn" class="detail-edit-field detail-edit-input" min="0" step="1" inputmode="numeric">
+              </p>
+              <hr class="block-divider">
+              <p>
+                <label>
+                  <input type="checkbox" id="editIsCollector">
+                  Sammlerflasche
+                </label>
+              </p>
+              <p>
+                <label>
+                  <input type="checkbox" id="editIsIncomplete">
+                  Unvollständiger Eintrag
+                </label>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div id="masterDataEditHint" class="detail-edit-hint">* Pflichtfeld</div>
+      <div class="detail-section-actions">
+        <button type="button" id="btnCancelMasterDataEdit" class="detail-edit-btn detail-edit-btn-secondary">Abbrechen</button>
+        <button type="button" id="btnSaveMasterData" class="detail-edit-btn">Speichern</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="gdb_whisky_create.js"></script>
+</body>
+</html>

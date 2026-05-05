@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="../../gdb_style.css">
+  <link rel="stylesheet" href="../../gdb_components.css">
+  <link rel="stylesheet" href="gdb_whisky_dashboard.css">
+  <title>Genussdatenbank – Dashboard</title>
+</head>
+<body>
+  <div class="page-content">
+    <div class="dashboard-wrap">
+
+      <div class="card">
+        <div class="dashboard-grid" id="dashboardStatsGrid">
+          <div class="dashboard-stat card">
+            <div class="dashboard-stat-value">–</div>
+            <div class="dashboard-stat-label">Lade Daten…</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="dashboard-section-head">
+          <h3 style="margin:0;">Pflegebedarf</h3>
+        </div>
+        <div class="dashboard-list" id="dashboardCareList">
+          <div class="dashboard-empty">Lade Daten…</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="dashboard-section-head">
+          <h3 style="margin:0;">Herkunftskarte</h3>
+        </div>
+
+        <div class="muted" id="dashboardMapIntro" style="margin-bottom:10px;">
+          Wähle auf der Weltkarte ein Herkunftsland aus. Für Deutschland steht zusätzlich eine Regionenkarte mit Bundesländern zur Verfügung.
+        </div>
+
+        <div class="dashboard-map-toolbar" id="dashboardMapToolbar">
+          <div class="dashboard-map-status-wrap">
+            <div class="dashboard-map-status-label">Ansicht</div>
+            <div class="dashboard-map-status-value" id="dashboardMapStatusValue">Weltkarte</div>
+          </div>
+        </div>
+
+        <div id="dashboardMapWrap" class="dashboard-map-wrap" aria-label="Zoombare Herkunftskarte der Genussdatenbank">
+          <div id="dashboardWorldMap" class="dashboard-world-map" aria-live="polite">
+            <div class="dashboard-empty">Weltkarte wird vorbereitet…</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="dashboard-section-head">
+          <h3 id="dashboardMapSelectionTitle" style="margin:0;">Kartenauswahl</h3>
+        </div>
+        <div class="muted" id="dashboardMapSelectionHint" style="margin-bottom:10px;">
+          Nach Auswahl eines Landes oder einer Region werden die passenden Einträge hier direkt angezeigt.
+        </div>
+        <div class="dashboard-list" id="dashboardMapSelectionList" aria-live="polite">
+          <div class="dashboard-empty">Noch keine Kartenauswahl getroffen.</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <script src="gdb_whisky_dashboard.js"></script>
+</body>
+</html>

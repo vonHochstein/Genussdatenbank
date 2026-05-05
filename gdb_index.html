@@ -1,0 +1,342 @@
+<!doctype html>
+<html lang="de">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<link rel="apple-touch-icon" sizes="725x725" href="img/icon_whiskydatenbank.png">
+<link rel="icon" type="image/png" href="img/icon_whiskybibliothek.png">
+
+<title>Genussbibliothek</title>
+
+<link rel="stylesheet" href="gdb_style.css">
+<link rel="stylesheet" href="gdb_components.css">
+<link rel="stylesheet" href="gdb_stars.css">
+<link rel="stylesheet" href="gdb_stockbar.css">
+<link rel="stylesheet" href="gdb_pli.css">
+
+
+<div class="topbar app-topbar" style="display:none;">
+  <h1 id="siteTitle">Genussbibliothek</h1>
+  <div class="topbar-actions">
+    <button id="themeToggle" class="iconBtn" title="Hell/Dunkel umschalten" type="button">
+      <img id="themeIcon" src="icons/theme-dark.png" alt="Theme">
+    </button>
+    <button id="logout" class="iconBtn" title="Abmelden" style="display:none">
+      <img src="icons/logout.png" alt="Abmelden">
+    </button>
+  </div>
+  
+</div>
+
+
+<!-- PRE-LOGIN / STARTSEITE -->
+<div id="preloginIntro" class="prelogin-shell">
+
+  <section class="card prelogin-hero">
+    <div class="prelogin-hero-copy">
+      <br>
+      <h1 id="siteTitle">Genussbibliothek</h1>
+      <br>
+      <p class="lead">
+        Ein Ort für Sammlung, Bewertung und Vergleich ausgewählter Genüsse – mit Fokus auf Übersicht, Stil und Substanz.
+      </p>
+      <p class="muted">
+        Aktuell bildet Whisky den ersten vollständig ausgebauten Bereich. Weitere Genusswelten folgen Schritt für Schritt.
+      </p>
+    </div>
+
+    <div id="lockscreen" class="card prelogin-login-card">
+      <h3>Anmeldung</h3>
+      <p class="muted" style="margin-top:0; margin-bottom:12px;">Zugang nur für freigegebene Nutzer.</p>
+
+      <div class="row">
+        <input id="username" type="username" placeholder="E-Mail" autocomplete="username">
+        <input id="pass" type="password" placeholder="Passwort" autocomplete="current-password">
+        <button id="enter">Anmelden</button>
+      </div>
+
+      <p id="msg" class="err"></p>
+    </div>
+  </section>
+
+  <section class="prelogin-info-grid">
+    <div class="card prelogin-info-card">
+      <h3>Sammlung</h3>
+      <p>
+        Zentrale Erfassung ausgewählter Genüsse mit sauberer Struktur, Herkunft, Reifung, Stammdaten und persönlichem Kontext.
+      </p>
+    </div>
+
+    <div class="card prelogin-info-card">
+      <h3>Bewertung</h3>
+      <p>
+        Persönliche Einschätzungen, Vergleichbarkeit, Preis-Leistungs-Betrachtung und nachvollziehbare Entwicklung über die Zeit.
+      </p>
+    </div>
+
+    <div class="card prelogin-info-card">
+      <h3>Bestände</h3>
+      <p>
+        Überblick über eigene Vorräte, gemeinsame Bestände und spätere Erweiterungen für weitere Genussbereiche.
+      </p>
+    </div>
+  </section>
+
+</div>
+
+<!-- APP (wird nach Login eingeblendet) -->
+<div id="dashboard">
+
+  <div id="app" class="card">
+    <div class="view-header">
+      <h3>Übersicht</h3>
+      
+    </div>
+    <p id="loginOk" class="ok" style="margin-top:0; margin-bottom:10px"></p>
+  </div>
+
+  <p id="dashboardMsg" class="" style="margin-top:0; margin-bottom:0"></p>
+
+  <div class="tile-grid" style="margin-top:14px">
+    
+    <div id="tileWhisky" class="card tile" title="Whisky-Übersicht & Detailansichten">
+      <img src="icons/whisky_384.png" alt="Whisky">
+      <h3>Whisky</h3>
+      <div class="hint" id="tileStatWhisky">Lade Daten…</div>
+    </div>
+
+    <div class="card tile" title="Kommt als Nächstes">
+      <img src="icons/gin_384.png" alt="">
+      <h3>Gin</h3>
+      <div class="hint">folgt...</div>
+    </div>
+
+    <div class="card tile" title="Kommt als Nächstes">
+      <img src="icons/rum_384.png" alt="">
+      <h3>Rum</h3>
+      <div class="hint">folgt...</div>
+    </div>
+
+    <div class="card tile" title="Kommt als Nächstes">
+      <img src="icons/wein_sekt_384.png" alt="">
+      <h3>Wein & Sekt</h3>
+      <div class="hint">folgt...</div>
+    </div>
+
+    <div class="card tile" title="Kommt als Nächstes">
+      <img src="icons/grappa_384.png" alt="">
+      <h3>Grappa</h3>
+      <div class="hint">folgt...</div>
+    </div>
+
+    <div class="card tile" title="Kommt als Nächstes">
+      <img src="icons/bier_384.png" alt="">
+      <h3>Bier</h3>
+      <div class="hint">folgt...</div>
+    </div>
+
+    <div class="card tile" title="Kommt als Nächstes">
+      <img src="icons/zigarren_384.png" alt="">
+      <h3>Zigarren</h3>
+      <div class="hint">folgt...</div>
+    </div>
+
+    <div class="card tile" title="Kommt als Nächstes">
+      <img src="icons/tabak_384.png" alt="">
+      <h3>Pfeifentabak</h3>
+      <div class="hint">folgt...</div>
+    </div>
+
+    <div id="tileAllItems" class="card tile" title="Kommt als Nächstes">
+      <img src="icons/alle_genuesse_384.png" alt="">
+      <h3>alle Genüsse</h3>
+      <div class="hint">in Arbeit...</div>
+    </div>
+
+  </div>
+
+</div>
+
+<!-- Whisky (Kartenansicht) -->
+<div id="whiskyListView" class="view hidden">
+  <div class="card">
+    <div class="view-header">
+      <h3 id="whiskyViewTitle">Whisky</h3>
+      <button id="backToDashFromWhiskyBtn" class="btn">Zurück</button>
+    </div>
+    <p id="whiskyLoginOk" class="ok" style="margin-top:0; margin-bottom:10px"></p>
+
+    <!-- Toolbar Whisky Liste -->
+    <div class="whisky-toolbar card" style="margin-top:10px; padding:10px;">
+
+      <!-- Anzahl -->
+      <div class="toolbar-block">
+        <div id="whiskyCount" class="muted">0 Whiskys</div>
+      </div>
+
+      <!-- Suche -->
+      <div class="toolbar-block">
+        <input id="whiskySearch" type="text" placeholder="Whisky suchen… z. B. islay rauch 10" autocomplete="off" style="width:100%;">
+      </div>
+
+      <!-- Sortierung -->
+      <div class="toolbar-block" style="display:flex; gap:8px; align-items:center;">
+        <select id="whiskySort" style="width:100%;">
+          <option value="name">Name</option>
+          <option value="rating_avg">Bewertung (Ø)</option>
+          <option value="rating_user">Meine Bewertung</option>
+          <option value="pli_avg">PLI (Ø)</option>
+          <option value="pli_user">Mein PLI</option>
+          <option value="price">Preis</option>
+          <option value="created">erstellt</option>
+          <option value="updated">geändert</option>
+        </select>
+
+        <button id="whiskySortDir" class="btn" type="button" title="Sortierreihenfolge umschalten" aria-label="Sortierreihenfolge aufsteigend">↑</button>
+      </div>
+
+      <!-- Bestand Vergleich -->
+      <div class="toolbar-block">
+        <label style="display:flex; align-items:center; gap:6px;">
+          <input type="checkbox" id="whiskyCompareStock">
+          <span>Bestandsvergleich</span>
+        </label>
+      </div>
+
+      <!-- Aktionen -->
+      <div class="toolbar-block" style="display:flex; gap:8px; flex-wrap:wrap;">
+        <button id="btnList" class="btn">Filter Reset</button>
+        <button id="btnNewWhisky" class="btn">Neuer Whisky</button>
+        <button id="btnDashboard" class="btn">Dashboard</button>
+      </div>
+
+    </div>
+  </div>
+
+  <p id="whiskyMsg" class="" style="margin-top:0; margin-bottom:0"></p>
+
+  <iframe id="whiskyFrame" class="view-frame" src="" loading="lazy"></iframe>
+</div>
+
+<!-- Neu seit letztem Login -->
+<div id="newsModal" class="modal hidden" aria-hidden="true">
+  <div class="modal-backdrop"></div>
+
+  <div class="modal-card card">
+    <div class="modal-header">
+      <h3>Neu seit deinem letzten Login</h3>
+      <button id="newsOkBtn" class="btn modal-close">OK</button>
+    </div>
+
+    <div class="modal-body">
+      <div id="newsList" class="news-list">
+        <!-- dynamisch -->
+      </div>
+    
+    </div>
+  </div>
+</div>
+
+<!-- Whisky PLI Modal (global, über gesamte Seite inkl. iFrame) -->
+<div id="pliModal" class="modal hidden" aria-hidden="true">
+  <div class="modal-card" role="dialog" aria-modal="true" tabindex="-1"></div>
+  <div class="modal-backdrop" data-close-modal="pliModal"></div>
+
+  <div class="modal-card card" role="dialog" aria-modal="true" aria-labelledby="pliModalTitle">
+    <div class="modal-header">
+      <h3 id="pliModalTitle">Preis-Leistungs-Index (PLI)</h3>
+      <button id="pliCloseBtn" class="btn modal-close">Schließen</button>
+    </div>
+
+    <div class="modal-body">
+      <p><strong>Worum geht es?</strong><br>
+      Der Preis-Leistungs-Index (PLI) setzt <strong>Bewertung</strong> und <strong>Preis</strong> ins Verhältnis.
+      Er zeigt, wie viel Qualität man <strong>pro eingesetztem Euro</strong> bekommt: <strong>Je höher, desto mehr Genuss fürs Geld.</strong></p>
+
+      <p><strong>Wie entsteht der Wert?</strong><br>
+      Der PLI wird aus zwei Faktoren berechnet - deiner Bewertung und dem Kaufpreis. Hohe Bewertungen erhöhen den Wert, hohe Preise senken ihn.
+      Dadurch kann ein sehr teurer Top-Whisky trotz hervorragender Bewertung einen niedrigeren PLI haben als ein günstiger Whisky mit etwas weniger Punkten. 
+      Das ist kein Qualitätsurteil, sondern eine rechnerische Relation.</p>
+
+      <p><strong>Beispiele</strong><br>
+      700&nbsp;ml, 100&nbsp;€, Bewertung 10/10 → PLI ca. 0,07 (hochwertig aber verhältnismößig teuer)<br>
+      700&nbsp;ml, 23&nbsp;€, Bewertung 7/10 → PLI ca. 0,21 (starkes Preis-Leistungs-Verhältnis)</p>
+
+      <p><strong>Richtwerte (grobe Einordnung)</strong></p>
+      <ul class="pli-scale-list">
+        <li><strong>&lt; 0,04</strong> → eher schwaches Preis-Leistungs-Verhältnis</li>
+        <li><strong>0,04 – 0,07</strong> → eeher teuer / Premium-Preisbereich</li>
+        <li><strong>0,08 – 0,11</strong> → fair bepreist</li>
+        <li><strong>0,12 – 0,16</strong> → gutes Preis-Leistungs-Verhältnis</li>
+        <li><strong>&gt; 0,16</strong> → seht gutes Preis-Leistungs-Verhältnis</li>
+      </ul>
+
+      <p class="muted"><strong>Hinweis:</strong> Der PLI ist ein Entscheidungshelfer für Preis vs. eigene Bewertung. Ein niedriger PLI bedeutet nicht „schlechter Whisky“.
+      Hochpreisige Abfüllungen bewegen sich naturgemäß in niedrigeren PLI-Bereichen – selbst bei 9–10 Punkten.
+      Der PLI ist besonders sinnvoll zum Vergleich innerhalb der eigenen Sammlung oder zwischen Whiskys ähnlicher Preisklassen</p>
+    </div>
+
+  </div>
+</div>
+
+<!-- Whisky Bewertungen Modal (global, Inhalt kommt aus iFrame) -->
+<div id="ratingsModal" class="modal hidden" aria-hidden="true">
+  <div class="modal-card" role="dialog" aria-modal="true" tabindex="-1"></div>
+  <div class="modal-backdrop" data-close-modal="ratingsModal"></div>
+
+  <div class="modal-card card" role="dialog" aria-modal="true" aria-labelledby="ratingsModalTitle">
+    <div class="modal-header">
+      <h3 id="ratingsModalTitle">Alle Bewertungen</h3>
+      <button id="ratingsCloseBtn" class="btn modal-close">Schließen</button>
+    </div>
+
+    <div class="modal-body">
+      <div id="ratingsModalContent"></div>
+    </div>
+
+  </div>
+</div>
+
+<!-- Whisky Stocks Modal -->
+<div id="stocksModal" class="modal hidden" aria-hidden="true">
+  <div class="modal-card" role="dialog" aria-modal="true" tabindex="-1"></div>
+  <div class="modal-backdrop" data-close-modal="stocksModal"></div>
+
+  <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="stocksTitle">
+    <div class="modal-header">
+      <h3 id="stocksTitle">Bestände</h3>
+      <button id="stocksCloseBtn" class="btn modal-close" type="button">Schließen</button>
+    </div>
+
+    <div id="stocksBody" class="modal-body"></div>
+  </div>
+</div>
+
+<!-- Whisky Bestandsvergleich Modal -->
+<div id="compareStockModal" class="modal hidden" aria-hidden="true">
+  <div class="modal-card" role="dialog" aria-modal="true" tabindex="-1"></div>
+  <div class="modal-backdrop" data-close-modal="compareStockModal"></div>
+
+  <div class="modal-card card" role="dialog" aria-modal="true" aria-labelledby="compareStockTitle">
+    <div class="modal-header">
+      <h3 id="compareStockTitle">Bestandsvergleich</h3>
+    </div>
+
+    <div class="modal-body">
+      <p class="muted" style="margin-top:0;">Mit welchem Nutzer soll dein Bestand verglichen werden?</p>
+      <div id="compareStockUserList" class="compare-stock-user-list"></div>
+
+      <div class="row" style="justify-content:flex-end; margin-top:12px;">
+        <button id="compareStockCancelBtn" class="btn modal-close" type="button">Abbrechen</button>
+        <button id="compareStockApplyBtn" class="btn modal-close" type="button">Anwenden</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="gdb_theme.js"></script>
+<script src="gdb_news.js"></script>
+<script src="gdb_permissions.js"></script>
+<script src="gdb_index.js"></script>
+</html>

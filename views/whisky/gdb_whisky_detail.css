@@ -1,0 +1,342 @@
+.detail-wrap{
+  padding: 14px; /* Abstand zum Rand */
+}
+
+.detail-grid{
+  display: grid;
+  grid-template-columns: 150px 1fr;
+  gap: 14px;
+  align-items: start;
+}
+
+.detail-view{
+  padding-top: 3px;   /* Abstand Content von Titelleiste */
+}
+
+.detail-image-wrap{
+  width: 100%;
+  aspect-ratio: 1 / 2;
+  border-radius: 8px;
+  background: rgba(0,0,0,0);
+  display:flex;
+  align-items: flex-start;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.detail-image-wrap img{
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  opacity: 0.95;
+}
+
+.detail-title{
+  font-weight: 700;
+  font-size: 1.35rem;
+  margin-bottom: 6px;
+}
+
+.detail-card-title{
+  font-weight: 700;
+  font-size: 1.25rem;
+  margin-bottom: 0px;
+}
+
+.deteail-bold{
+  font-weight: 700;
+}
+
+.detail-lines{
+  display: flex;
+  flex-direction: column;
+  gap: 10px;   /* Zeilenabstand Allgemeiner Bereich*/
+}
+
+.detail-user{
+  padding: 10px;
+  margin-top: 10px;
+}
+
+@media (max-width: 720px){
+  .detail-grid{
+    grid-template-columns: 1fr;
+  }
+  .detail-image-wrap{
+    aspect-ratio: 16 / 9;
+  }
+}
+
+body{
+  margin: 0;
+}
+
+/* Hide scrollbars (Whisky-View) */
+html, body{
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE/Edge legacy */
+}
+html::-webkit-scrollbar, body::-webkit-scrollbar{
+  width: 0;
+  height: 0;
+}
+
+.personal {
+  margin-top: 20px; /* Abstand zum oberen Bereich */
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  height: 100%;
+  background: linear-gradient(180deg, rgba(201,143,56,0.1) 0%, rgba(255,255,255,0) 100%);
+  border: 1px solid #c98f38;
+  border-radius: 10px;
+  box-shadow: 0 1px 4px rgba(0,0,0,.08);
+  padding: 10px; /* Innenabstand */
+  transition: box-shadow .2s ease; /* sanfter Hover-Effekt */
+}
+
+.personal strong {
+  display: inline-block;
+  min-width: 120px;
+  font-weight: 600;
+  color: #b17828;
+  margin: 0px 60px 0px 0px;
+}
+
+.detailDebug {
+  padding-top: 10px;
+  font-size: 0.55rem;
+}
+
+.meta {
+  padding-top: 10px;
+  font-size: 0.9rem;
+}
+
+.card.personal h4 {
+  margin: 0 0 6px 0;
+  font-size: 1.05rem;
+  padding: 4px 8px;
+  border-radius: 6px;
+  background: linear-gradient(90deg,#c98f38 0%,#b17828 100%);
+  color: #fff;
+  letter-spacing: 0.03em;
+  text-shadow: 0 1px 1px rgba(0,0,0,.2);
+}
+
+h5 {
+  color: var(--accent, #d4af37);
+  margin-top: 8px;
+  font-size: 1rem;
+  font-weight: 800;
+}
+
+/* Detailkarte – Zeilenabstände für die Infozeilen */
+.detail-lines p{
+  margin: 0 0 6px 0;   /* Abstand zwischen den Zeilen */
+}
+
+.detail-lines p:last-child{
+  margin-bottom: 0;    /* unten nicht extra Luft */
+}
+
+.wiki-flag{
+  height: 1em;
+  vertical-align: middle;
+  margin-right: 4px;
+}
+.detail-meta-line .sep{
+  margin: 0 0px;
+  opacity: .6;
+}
+
+.meta-mid {
+  width: 100px;
+  display: flex;
+  align-items: center;
+}
+
+.pli-scale-wrap {
+  width: 100%;
+}
+
+.dark .bottle-svg { color: rgba(255,255,255,0.6); }
+.bottle-svg { color: rgba(0,0,0,0.6); }
+
+/* === Edit Mode Styling === */
+
+.detail-edit-btn {
+  margin-top: 8px;
+  padding: 4px 8px;
+  font-size: 0.8rem;
+  border-radius: 6px;
+  border: 1px solid #c98f38;
+  background: rgba(201,143,56,0.1);
+  color: #b17828;
+  cursor: pointer;
+}
+
+.detail-edit-btn:hover {
+  background: rgba(201,143,56,0.2);
+}
+
+.detail-edit-hint {
+  margin-top: 6px;
+  font-size: 0.75rem;
+  color: #b17828;
+  opacity: 0.85;
+}
+
+#myDetailsViewMode[data-edit-mode="on"] {
+  outline: 1px dashed #c98f38;
+  outline-offset: 4px;
+  padding: 6px;
+  border-radius: 6px;
+  background: rgba(201,143,56,0.05);
+}
+
+/* === Edit Mode: Generic Edit Fields === */
+.detail-edit-field {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 8px 10px;
+  font-size: 0.85rem;
+  font-family: inherit;
+  border-radius: 6px;
+  border: 1px solid #c98f38;
+  background: rgba(255,255,255,0.9);
+  color: #333;
+  box-shadow: inset 0 1px 2px rgba(0,0,0,0.08);
+}
+
+.detail-edit-field:focus {
+  outline: none;
+  border-color: #b17828;
+  box-shadow: 0 0 0 1px rgba(177,120,40,0.4);
+}
+
+.dark .detail-edit-field {
+  background: rgba(30,30,30,0.9);
+  color: #eee;
+  border: 1px solid #c98f38;
+}
+
+.detail-edit-textarea {
+  min-height: 90px;
+  resize: vertical;
+}
+
+.detail-edit-input,
+select.detail-edit-field,
+select.detail-edit-input {
+  min-height: 36px;
+  height: 36px;
+}
+
+/* Fix: kein unnötiger Abstand vor erstem Feld im Stammdaten-Editmodus */
+#masterDataEditFields {
+  margin-top: 0;
+}
+
+#masterDataEditFields p:first-child {
+  margin-top: 0;
+}
+
+/* Stammdaten-Editmodus: leere Wrapper-Zeilen ausblenden */
+#masterDataViewMode[data-edit-mode="on"] .detail-subtitle,
+#masterDataViewMode[data-edit-mode="on"] #whiskyPriceLine {
+  display: none;
+}
+
+/* === Detail View: Collector Badge under image === */
+.detail-image-badges {
+  display: flex;
+  justify-content: center;
+  margin-top: 25px;
+  overflow: visible;
+}
+
+.detail-image-badges .collector-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: auto;
+  height: auto;
+  min-width: 0;
+  min-height: 0;
+  padding: 0;
+  margin: 0;
+  background: transparent;
+  border: none;
+  box-shadow: none;
+  filter: none;
+  overflow: visible;
+}
+
+.detail-image-badges .collector-img {
+  display: block;
+  width: 90px;
+  height: auto;
+  filter: drop-shadow(0 0 6px rgba(212,175,55,0.6));
+  transition: transform 0.2s ease, filter 0.2s ease;
+}
+
+.provisional-strip {
+  display: inline-block;
+  margin-top: 10px;
+  padding: 4px 12px;
+  border-radius: 6px;
+  background: linear-gradient(180deg, rgba(122,31,31,0.95) 0%, rgba(90,20,20,0.98) 100%);
+  border: 1px solid rgba(214,74,63,0.55);
+  box-shadow: 0 0 8px rgba(214,74,63,0.18), inset 0 1px 0 rgba(255,255,255,0.06);
+  color: #f5d0d0;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  text-align: center;
+}
+
+/* === Detail View: Changelog Card === */
+#detailChangelogCard {
+  margin-top: 15px;
+}
+
+.detail-changelog-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.detail-changelog-entry {
+  padding: 8px 10px;
+  border: 1px solid rgba(201,143,56,0.22);
+  border-radius: 8px;
+  background: rgba(201,143,56,0.05);
+}
+
+.detail-changelog-meta {
+  font-size: 0.72rem;
+  opacity: 0.8;
+  margin-bottom: 4px;
+}
+
+.detail-changelog-details {
+  font-size: 0.83rem;
+  line-height: 1.35;
+}
+
+.detail-changelog-empty {
+  font-size: 0.82rem;
+  opacity: 0.8;
+}
+
+/* Reduce spacing around changelog title */
+#detailChangelogCard .detail-section-head {
+  margin-bottom: 4px;
+}
+
+#detailChangelogCard h4 {
+  margin: 4px 0 4px 0;
+  line-height: 1.1;
+}

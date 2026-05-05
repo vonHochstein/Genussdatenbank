@@ -1,0 +1,504 @@
+/* Genussdatenbank (GDB) – Components (Index)
+   Alles, was NICHT Basis-Theme ist (Layout/Komponenten der Startseite)
+*/
+
+#dashboard { display: none; }
+
+.hint { color: var(--muted); font-size: .95rem; margin-top: 6px; }
+
+.tile-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 16px;
+}
+
+@media (max-width: 800px){
+  .tile-grid {
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  }
+}
+
+/* Kachel: klickbar + ruhiges Hover-Feedback */
+.tile{
+  cursor: pointer;
+  user-select: none;
+  transition: border-color .12s ease, box-shadow .12s ease, transform .06s ease, background-color .12s ease;
+}
+
+.tile h3 { margin: 0 0 6px 0; }
+
+.ok { color: #d4af37; }
+
+.err { color: #b00020; }
+
+/* Login feedback / Fehlermeldung */
+#msg {
+  margin-top: 8px;
+  font-size: 0.9rem;
+  min-height: 1.2em;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+#msg.show {
+  opacity: 1;
+}
+
+/* Topbar (Theme + Logout) */
+.topbar{
+  overflow: visible;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+  margin-bottom:10px;
+}
+
+.topbar .title{
+  margin:0;
+}
+
+.topbar-actions{
+  display:flex;
+  align-items:center;
+  gap:8px;
+}
+
+@media (max-width: 520px){
+  .topbar{
+    gap: 8px;
+    margin-bottom: 8px;
+  }
+  .topbar-actions{
+    gap: 6px;
+  }
+  .iconBtn{
+    width: 32px;
+    height: 32px;
+  }
+}
+
+/* Kleine Icon-Buttons im WB-Look */
+.iconBtn{
+  font-size: 1.05rem;
+  width: 34px;
+  height: 34px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 6px;
+  line-height: 1;
+  padding: 0;
+}
+
+/* dezenter Lift + Gold-Akzent */
+.tile:hover{
+  border-color: #d4af37;
+  box-shadow: 0 6px 16px rgba(0,0,0,0.22);
+  transform: translateY(-2px);
+}
+
+.tile img{
+  opacity: 0.88;
+  transition: opacity .12s ease;
+  width: 70%;
+  height: 70%;
+} 
+
+@media (max-width: 600px){
+  .tile img{
+    width: 60%;
+    height: 60%;
+  }
+}
+
+.tile:hover img{
+  opacity: 1;
+}
+
+/* Dark Mode: etwas mehr Tiefe */
+body.dark .tile:hover{
+  box-shadow: 0 8px 20px rgba(0,0,0,0.5);
+}
+
+/* Keyboard-Navigation */
+.tile:focus-within{
+  border-color: #d4af37;
+  box-shadow: 0 0 0 2px rgba(212,175,55,0.22);
+}
+
+/* Modal (Neu seit letztem Login) */
+.modal.hidden { display: none; }
+
+.modal {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+}
+
+.modal-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.55);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+}
+
+.modal-card{
+  width: min(720px, calc(100vw - 32px));
+  max-height: min(80vh, 720px);
+  overflow: auto;
+
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 14px 14px 10px;
+  box-shadow: 0 10px 30px rgba(0,0,0,.35);
+
+  position: relative;
+  margin: 10vh auto 0 auto;
+}
+
+/* Ratings-Modal: schmalere Card für bessere Zuordnung Name ↔ Sterne */
+#ratingsModal .modal-card{
+  width: min(500px, 100%);
+}
+
+/* Stocks-Modal: schmalere Card für bessere Zuordnung Name ↔ Balken */
+#stocksModal .modal-card{
+  width: min(500px, 100%);
+}
+
+.modal-header{
+  display:flex;
+  align-items:flex-start;
+  justify-content:space-between;
+  gap:12px;
+  margin-bottom: 8px;
+}
+
+.modal-header h3 small{
+  display:block;
+  opacity:0.7;
+  font-weight:400;
+}
+
+.modal-body{
+  padding: 0;
+}
+
+.modal-close{
+  border:1px solid var(--border);
+  background: transparent;
+  color: inherit;
+  border-radius: 10px;
+  padding: 6px 10px;
+  cursor:pointer;
+}
+
+.modal-close:hover{
+  border-color: rgba(212,175,55,0.55);
+}
+
+.news-list {
+  display: grid;
+  gap: 10px;
+}
+
+.news-item {
+  padding: 10px 12px;
+  border-radius: 12px;
+  background: rgba(0,0,0,0.04);
+}
+
+body.dark .news-item {
+  background: rgba(255,255,255,0.06);
+}
+
+.news-item .meta {
+  opacity: 0.8;
+  font-size: 0.9rem;
+}
+
+.news-item .title {
+  margin-top: 4px;
+}
+
+/* nutzt deine bestehende Button-Optik */
+.modal-footer {
+  display: flex;
+  justify-content: flex-end;
+}
+
+/* Überschrift kompakt */
+.modal-header h3 {
+  margin: 0;
+}
+
+/* OK-Button visuell verankern */
+.modal-footer .btn {
+  min-width: 96px;
+}
+
+/* View: Alle Genüsse */
+.view.hidden {
+  display: none;
+}
+
+.view-header { /* Titelleiste */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  min-height: 44px; /* feste Höhe: wichtig um Pixelgenauigkeit zu erreichen bei Leisten mit unterschiedlichen Elementen */
+}
+
+/* Grid für Alle-Genüsse-Karten */
+.all-items-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 14px;
+}
+
+/* Karten innerhalb Alle Genüsse */
+.item-tile img {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  border-radius: 12px;
+  display: block;
+}
+
+.item-meta{
+  max-width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  opacity: 0.85;
+  font-size: 0.9rem;
+}
+
+.badges{
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-top: 4px;
+}
+
+.badge{
+  font-size: 0.8rem;
+  padding: 4px 10px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: rgba(0,0,0,0.03);
+}
+
+body.dark .badge{
+  background: rgba(255,255,255,0.06);
+}
+
+/* Alle Genüsse – Controls */
+.all-items-controls {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 14px;
+  flex-wrap: wrap;
+}
+
+.all-items-controls input,
+.all-items-controls select {
+  flex: 1 1 220px;
+}
+
+/* Alle Genüsse – Tile-Karten (nicht Dashboard-Tiles!) */
+.item-tile{
+  cursor: pointer;
+  user-select: none;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  transition: border-color .12s ease, box-shadow .12s ease, transform .06s ease;
+}
+
+.item-tile:hover{
+  border-color: rgba(212,175,55,0.55);
+  box-shadow: 0 6px 16px rgba(0,0,0,0.18);
+  transform: translateY(-2px);
+}
+
+body.dark .item-tile:hover{
+  box-shadow: 0 8px 20px rgba(0,0,0,0.5);
+}
+
+.item-tile img{
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  border-radius: 12px;
+  display: block;
+}
+
+/* Whisky Detail */
+.whisky-detail{
+  display: grid;
+  grid-template-columns: 320px 1fr;
+  gap: 16px;
+  align-items: start;
+}
+
+@media (max-width: 860px){
+  .whisky-detail{
+    grid-template-columns: 1fr;
+  }
+}
+
+.whisky-detail-media img{
+  width: 100%;
+  height: 360px;
+  object-fit: cover;
+  border-radius: 12px;
+  display: block;
+}
+
+.whisky-kpis{
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.kpi{
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 10px 12px;
+  background: rgba(0,0,0,0.02);
+}
+
+body.dark .kpi{
+  background: rgba(255,255,255,0.04);
+}
+
+.kpi-label{
+  font-size: .8rem;
+  opacity: .75;
+}
+
+.kpi-val{
+  font-size: 1.05rem;
+  font-weight: 600;
+  margin-top: 2px;
+}
+
+.whisky-usergrid{
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 8px 14px;
+  margin-top: 8px;
+}
+
+/* PLI Scale list (Modal) */
+.pli-scale-list{ margin:10px 0 6px; padding-left:18px; }
+.pli-scale-list li{ margin:4px 0; }
+
+/* Karten-Block: allgemeiner Abstand für Metrik-Blöcke */
+.metrics-block{
+  margin-top: 6px;
+  display: grid;
+  row-gap: 2px;
+  align-items: center;
+}
+
+/* 3-Spalten-Logik (Kartenansicht) */
+.metrics-3col{
+  display: grid;
+  grid-template-columns: 130px 100px auto;
+  column-gap: 20px;
+}
+
+/* 3-Spalten-Variante für Detailkarte (Allgemeine Angaben)*/
+.metrics-3col-detail{
+  display: grid;
+  grid-template-columns: 115px 100px auto;
+  column-gap: 20px;
+}
+
+/* 3-Spalten-Variante für Detailkarte (Persönliche Angaben)*/
+.metrics-3col-personal{
+  display: grid;
+  grid-template-columns: 160px 100px auto;
+  column-gap: 20px;
+}
+
+/* 3-Spalten-Variante für Metadaten*/
+.metrics-3col-meta{
+  display: grid;
+  grid-template-columns: 240px 140px auto ;
+  column-gap: 0px;
+  font-size: small;
+  margin-top: 10px;
+}
+
+/* Detailkarte: Sterne exakt auf 100px bringen */
+.detail-metrics .stars{
+  display: flex;
+  gap: 5px;
+  width: 100px;
+}
+
+.detail-metrics .star{
+  width: 16px;
+  height: 16px;
+  background-size: 16px 16px;
+  flex: 0 0 16px;
+}
+
+/* 3-Spalten-Variante für Popups*/ 
+.metrics-3col-popup{
+  display: grid;
+  grid-template-columns: 240px 1fr 65px; /* Name | Balken | ml */
+  column-gap: 12px;
+  row-gap: 6px;
+  align-items: center;
+}
+
+.metrics-3col-popup .stockbar-track{ width: 100%; }
+.metrics-3col-popup .stockbar-ml{ text-align: right; }
+
+/* Zeilen-Wrapper für einzelne Metrik-Zeilen */
+.metric-row{
+  display: contents;
+  align-items: center;
+  min-height: 22px;   /* einheitliche visuelle Zeilenhöhe */
+}
+
+/* Trennlinien */
+hr.changelog-divider {
+  display: block;
+  border: none;
+  height: 1px;
+  margin: 18px 0;
+  background: linear-gradient(90deg, #d4af37 0%, #b17828 100%);
+  opacity: 0.8;
+  border-radius: 1px;
+  box-shadow: none;
+  outline: none;
+}
+
+hr.block-divider {
+  border: none;
+  border-top: 1px solid rgba(212, 175, 55, 0.5);
+  margin: 5px 0;      /* Abstand oben/ unten und Seite (Breite)*/
+  background: none;   /* verhindert Mischdarstellung */
+  height: 0;          /* keine zusätzliche Fläche */
+}
+
+/* Infoblock innerhalb Karten: Abstand nach unten zur Trennlinie*/
+.card-infoblock{
+  margin-bottom: 0px;
+}
+
+/* Detailkarte – Metadaten (gleichmäßige Zahlenbreite für Datum/Uhrzeit) */
+.metrics-3col-meta{
+  font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+  font-variant-numeric: tabular-nums;
+  font-size: 0.7rem;
+}

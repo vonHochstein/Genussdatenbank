@@ -1,0 +1,76 @@
+/* --- Inline styles from isolated step7 --- */
+/* ==========================================================
+       STOCK BARS (Fix): Fester Verlauf über 100% Track-Breite.
+       Ungefüllter Bereich ist wirklich "leer" (Card-Hintergrund).
+       WICHTIG: .stockbar-fill bildet den UNGEFÜLLTEN Anteil ab.
+       -> width muss also (100 - fuellstandProzent) sein.
+       ========================================================== */
+
+.stockbar-label{
+  font-size: .85rem;
+/*color: var(--muted); */   /* Label Farbe in Detailkarten */
+  white-space: nowrap;
+}
+.rating-num{
+  font-size: .85rem;
+  color: var(--muted);
+  white-space: nowrap;
+}
+.stockbar-track{
+  position: relative;
+  height: 10px;
+  border-radius: 999px;
+  background: var(--card);
+  border: 1px solid rgba(212,175,55,0.22);
+  overflow: hidden;
+}
+
+/* fester Verlauf über die ganze Track-Breite */
+.stockbar-track::before{
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg,
+    #d64a3f 0%,
+    #f2c94c 50%,
+    #2ecc71 100%
+  );
+  z-index: 0;
+}
+
+/* .stockbar-fill = Abdeckung des LEEREN Bereichs (rechts) */
+.stockbar-fill{
+  position: absolute;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  width: 100%;
+  background: var(--card); /* wirklich leer = Card-Hintergrund */
+  z-index: 1;
+  border-radius: 0 999px 999px 0;
+}
+
+.stockbar-ml{
+  font-size: .85rem;
+  color: var(--muted);
+  white-space: nowrap;
+}
+
+#stocksModal .stockbar-ml{
+  width: 64px;              /* ggf. 56–72px feinjustieren */
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#stocksModal .stockbar-row{
+  display: grid;
+  grid-template-columns: 1fr minmax(120px, 160px) 64px;
+  gap: 10px;
+  align-items: center;
+}
+
+#stocksModal .stockbar-label{
+  font-size: 0.95rem;   /* exakt wie bei Ratings */
+  font-weight: 500;
+  /* color: rgba(255,255,255,0.85); */  /* Label Farbe in Modal */
+}

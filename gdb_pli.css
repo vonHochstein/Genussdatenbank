@@ -1,0 +1,42 @@
+/* PLI Scale Visualisierung */
+.pli-scale-wrap{
+  display: flex;
+  align-items: center;   /* vertikal in die Zeilenmitte */
+  gap: 8px;
+}
+
+.pli-scale{
+  position: relative;
+  height: 6px;          /* statt 100% -> echte Skalenhöhe */
+  width: 100%;
+  flex: 1 1 auto;
+  margin-right: 2px;     /* falls du die Indexlinie rechts minimal “abschneiden” willst */
+}
+
+.pli-scale::before{
+  content:"";
+  position:absolute;
+  left:0; right:0;
+  top:20%;
+  height:2px;
+  transform: translateY(-50%);
+  background: linear-gradient(90deg, rgba(212,175,55,0.20), rgba(212,175,55,0.75), rgba(212,175,55,0.20));
+  border-radius: 99px;
+}
+
+.pli-marker{
+  position:absolute;
+  top:50%;
+  width:2px;
+  height:12px;
+  transform: translate(-50%, -60%);
+  background: rgba(212,175,55,0.95);
+  border-radius: 2px;
+  box-shadow: 0 0 0 1px rgba(0,0,0,0.25);
+}
+
+.pli-label{
+  font-size: 0.85rem;
+  color: var(--muted);
+  white-space: nowrap;
+}

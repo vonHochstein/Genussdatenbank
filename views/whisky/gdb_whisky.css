@@ -1,0 +1,678 @@
+:root{scrollbar-gutter: stable;}
+body{margin:0; padding:0px; background: var(--bg); color: var(--text);}
+
+  :root{
+    --bg:#fafafa; --text:#222; --muted:#666; --card:#fff; --border:#ddd;
+    --input-bg:#fff; --btn-bg:#eee; --btn-text:#222;
+  }
+  body.dark{
+    --bg:#1e1e1e; --text:#f5f5f5; --muted:#aaaaaa; --card:#2a2a2a; --border:#444;
+    --input-bg:#222; --btn-bg:#333; --btn-text:#f5f5f5;
+  }
+
+  body {
+    font-family: system-ui,Segoe UI,Roboto,Arial;
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+  }
+
+  h1,h2,h3 { margin: .4em 0 }
+  input,textarea,button,select {
+    font-size: 1rem;
+    padding: 6px;
+    margin: 4px 0;
+    color: var(--text);
+    background: var(--input-bg);
+  }
+
+  .row { display:flex; flex-wrap:wrap; gap:8px }
+  .card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 10px;
+    box-shadow: 0 1px 3px rgba(0,0,0,.05);
+    box-sizing: border-box;
+    cursor: pointer;
+    transition: transform .12s ease, box-shadow .12s ease, border-color .12s ease;
+  }
+
+    @media (hover:hover){
+    .card:hover{
+      transform: translateY(-3px);
+      box-shadow: 0 10px 24px rgba(0,0,0,.18);
+    }
+    .card:active{
+      transform: translateY(-1px);
+    }
+  }
+
+  .muted { color: var(--muted); font-size: .9rem }
+  button {
+    background: var(--btn-bg);
+    color: var(--btn-text);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    cursor: pointer;
+  }
+  button:hover { filter: brightness(0.98) }
+
+  /* Number-Spinner ausblenden */
+  input[type=number]::-webkit-outer-spin-button,
+  input[type=number]::-webkit-inner-spin-button { -webkit-appearance:none; margin:0 }
+  input[type=number]{ appearance: textfield; -moz-appearance:textfield }
+
+  /* Zweispaltige Kartenansicht */
+.two-col {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(480px, 1fr));
+  column-gap: 10px;
+  row-gap: 0;
+  margin-top: 10px;
+  align-items: start;      /* nicht stretch! */
+  justify-items: stretch;
+  vertical-align: top;     /* sichert gleiche Startlinie */
+}
+
+.two-col > .card {
+  min-width: 0;
+  margin-top: 0 !important;
+  vertical-align: top;
+}
+
+  .field { margin-bottom:6px }
+  img.thumb { width:100%; max-width:220px; border-radius:6px; object-fit:cover }
+
+  @media (max-width:600px){
+    .search-sort { grid-template-columns:1fr !important; }
+    .search-sort select { width:100%; }
+  }
+
+
+  /* --- Optische Aufbereitung persönliche Bereiche --- */
+  .card.personal {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    height: 100%;
+    background: linear-gradient(180deg, rgba(201,143,56,0.1) 0%, rgba(255,255,255,0) 100%);
+    border: 1px solid #c98f38;
+    border-radius: 10px;
+    box-shadow: 0 1px 4px rgba(0,0,0,.08);
+    padding: 10px;
+    transition: box-shadow .2s ease;
+  }
+  .card.personal:hover {
+    box-shadow: 0 2px 6px rgba(0,0,0,.15);
+  }
+
+/* ---------- Markierung vorläufiger Einträge ---------- */
+.card.provisional {
+  position: relative;
+  border-color: rgba(214, 74, 63, 0.6); /* warmes Rot-Gold */
+  box-shadow: 0 0 10px rgba(214, 74, 63, 0.45);
+  transition: box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+.card.provisional::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: linear-gradient(
+    180deg,
+    rgba(214, 74, 63, 0.10) 0%,
+    rgba(214, 74, 63, 0.06) 50%,
+    rgba(214, 74, 63, 0.10) 100%
+  );
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* ---------- Markierung Sammlerflaschen ---------- */
+.card.collector {
+  position: relative;
+  border-color: rgba(212, 175, 55, 0.6); /* Gold */
+  box-shadow: 0 0 10px rgba(212, 175, 55, 0.45);
+  transition: box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+.card.collector::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: linear-gradient(
+    180deg,
+    rgba(212,175,55,0.10) 0%,
+    rgba(177,120,40,0.08) 50%,
+    rgba(212,175,55,0.10) 100%
+  );
+  pointer-events: none;
+  z-index: 1;
+}
+
+  body.dark .card.personal {
+    background: linear-gradient(180deg, rgba(185,135,40,0.2) 0%, rgba(255,255,255,0.05) 100%);
+    border: 1px solid #444;
+  }
+
+  .card.personal h4 {
+    margin: 0 0 6px 0;
+    font-size: 1.05rem;
+    padding: 4px 8px;
+    border-radius: 6px;
+    background: linear-gradient(90deg,#c98f38 0%,#b17828 100%);
+    color: #fff;
+    letter-spacing: 0.03em;
+    text-shadow: 0 1px 1px rgba(0,0,0,.2);
+  }
+
+  /* Gleichmäßige Struktur und optische Abhebung */
+  .personal p {
+    border-bottom: none;
+    padding-bottom: 0px;
+    margin-bottom: 0px;
+  }
+
+  .personal p:first-of-type {
+    margin-top: 0;
+    padding-top: 0;
+    border-top: none;
+  }
+
+  .personal p:last-of-type {
+    border-bottom: none;
+    margin-bottom: 0;
+    padding-bottom: 0;
+  }
+
+  .personal strong {
+    display: inline-block;
+    min-width: 110px;
+    font-weight: 600;
+    color: #b17828;
+  }
+
+  h1 {
+    font-family: "Georgia", "Times New Roman", serif;
+    font-size: 2.2rem;
+    letter-spacing: 0.03em;
+    color: #b17828;
+    background: linear-gradient(90deg, #d4af37 0%, #b17828 100%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 0 1px 1px rgba(0,0,0,0.25);
+    margin-bottom: 0.4em;
+  }
+
+  #content.list { display:block; padding-top:2px; }
+  #viewToggle { font-size:1.1rem; }
+
+  #themeToggle, #viewToggle {
+    font-size: 1.1rem;
+    width: 34px;
+    height: 34px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 6px;
+  }
+
+  #content.grid .card {
+    min-height: 350px;
+    border-radius: 8px;
+    box-sizing: border-box;
+  }
+
+  /* Dynamisches Raster NUR in der Listenansicht */
+  #content.grid.listview {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(450px, 1fr));
+    gap: 10px;
+    padding: 8px 0 0 0;
+  }
+
+  /* Standard für Detailansicht */
+  #content { display:block; padding:0; }
+
+  /* Kachel-Höhe im Rastermodus */
+  #content.grid.listview .card {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 320px;
+    height: 100%;
+    border-radius: 8px;
+    box-sizing: border-box;
+  }
+
+  /* Einheitliche vertikale Startposition und Listenabstand in der allgemeinen Kartenansicht*/
+  #content.list { padding-top:10px; }
+  #content.grid.listview { padding-top:3px; }
+
+  #content.list .card + .card { margin-top:10px; }
+
+  /* ---------- Einheitliche Eingabefelder in Karten ---------- */
+.card input[type="text"],
+.card input[type="number"],
+.card input[type="file"],
+.card input[type="email"],
+.card input[type="password"],
+.card input[type="url"],
+.card select,
+.card textarea {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 6px 8px;
+  margin-bottom: 6px;
+  font-family: inherit;
+  font-size: 0.95rem;
+  border: 1px solid var(--border);
+  border-radius: 5px;
+  background-color: var(--input-bg);
+  color: var(--text);
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.card input:focus,
+.card select:focus,
+.card textarea:focus {
+  border-color: #b17828;
+  box-shadow: 0 0 3px rgba(177,120,40,0.4);
+  outline: none;
+}
+
+.card select {
+  appearance: none;
+  background-color: var(--input-bg);
+  height: 34px;
+}
+
+.card input[type="file"] {
+  padding: 4px;
+  border: none;
+  background-color: transparent;
+}
+
+.card button {
+  margin-top: 8px;
+  border-radius: 6px;
+  padding: 6px 10px;
+  cursor: pointer;
+}
+
+/* ---------- Toolbar-/Filter-Bereich wiederherstellen ---------- */
+.toolbar,
+.search-sort {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.toolbar label,
+.search-sort label {
+  margin: 0;
+  white-space: nowrap;
+}
+
+.toolbar input[type="text"],
+.toolbar select,
+.search-sort input[type="text"],
+.search-sort select {
+  width: auto;                /* nicht 100% */
+  min-width: 140px;
+  box-sizing: border-box;
+  display: inline-block;       /* wieder in einer Zeile */
+}
+
+/* ---------- Formatierung Dashboard ---------- */
+
+.country-summary {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 20px;
+}
+
+.country-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.flag-icon {
+  width: 24px;
+  height: 16px;
+  object-fit: cover;
+  border: 1px solid #444;
+  border-radius: 2px;
+}
+.country-name {
+  flex: 1;
+}
+.country-count {
+  color: #d4af37;
+  font-weight: 600;
+}
+
+.whisky-count {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-top: 10px;
+}
+
+.whisky-total {
+  color: #d4af37;
+  font-weight: 600;
+}
+
+#countryChart {
+  display: block;
+  margin: 0 auto;
+  width: 100%;
+  height: auto;
+  max-width: 800px;   /* feste Obergrenze Desktop */
+  max-height: 800px;  /* feste Obergrenze Desktop */
+}
+
+.pli-block {
+  color: #d4af37 !important;
+  font-weight: 600 !important;
+  font-size: 0.9rem !important;
+}
+
+.pli-detail {
+  color: #d4af37 !important;
+  font-weight: 600 !important;
+  margin-top: 6px;
+}
+
+.pli-detail strong {
+  color: var(--text);
+  font-weight: 500;
+  margin-right: 4px;
+}
+
+/* ---------- Bestandsanzeige (farbige Punkte) ---------- */
+.stock-dots {
+  display: flex;
+  justify-content: center;
+  gap: 6px;
+  margin-top: 6px;
+}
+
+.stock-dot {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  font-weight: 800;
+  font-size: 0.8rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 4px rgba(0,0,0,0.3);
+  color: #111;                
+  text-shadow: 0 0 3px rgba(255,255,255,0.5);
+}
+
+canvas[id^="donut_"] {
+  display: block;
+  margin: 8px auto 4px;
+  max-width: 120px;
+}
+
+.donut-wrap {
+  position: relative;
+  width: 120px;
+  margin: 8px auto 4px;
+}
+.donut-wrap canvas {
+  display: block;
+  width: 120px;
+  height: 120px;
+}
+.donut-label {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 0.9rem;
+  color: #f5e4b5; /* Gold-Kontrast */
+  text-shadow: 0 0 2px rgba(0,0,0,.4);
+  pointer-events: none;
+}
+
+h5 {
+  color: var(--accent, #d4af37);
+  margin-top: 8px;
+  font-size: 1rem;
+  font-weight: 800;
+}
+
+/* ---------- Whisky Karten: feste Bildspalte links ---------- */
+.whisky-row{
+  grid-template-columns: 120px minmax(0, 1fr);
+}
+
+.whisky-img-col{
+  flex: 0 0 120px;     /* feste Bildspaltenbreite */
+  max-width: 120px;
+}
+
+.whisky-img-wrap{
+  width: 120px;
+  height: 250px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  overflow: hidden;          /* bleibt */
+}
+
+.whisky-img{
+  display: block;
+  max-width: 100%;
+  width: auto;
+  height: auto;
+  max-height: 250px;
+  object-fit: contain;
+}
+
+@media (max-width: 520px){
+  .whisky-row{
+    grid-template-columns: 150px 1fr;
+    gap: 12px;
+  }
+  .whisky-img-col{ width: 150px; }
+  .whisky-img-wrap{ height: 250px; }
+  .whisky-img{ max-height: 250px; }
+}
+
+/* ---------- Einheitliche Whisky-Bildgrößen ---------- */
+
+/* Listenansicht */
+.listview img.thumb,
+.list .card:first-of-type img.thumb { /* greift auch beim Detailmodus */
+  max-height: 250px;
+  width: auto;
+  object-fit: contain;
+  margin: 0 auto 10px;
+}
+
+/* Detailansicht */
+#imgPrev {
+  display: block;
+  max-height: 400px;      /* größere Ansicht */
+  width: auto;
+  object-fit: contain;
+  margin: 0 auto 10px;
+}
+
+/* ---------- Filter-Checkbox (Beide mit Bestand) ---------- */
+.filter-checkbox {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  justify-content: flex-start;
+  font-size: 0.9rem;
+  color: var(--accent, #d4af37);
+  cursor: pointer;
+  user-select: none;
+}
+
+.filter-checkbox input[type="checkbox"] {
+  accent-color: var(--accent, #d4af37);
+  width: 16px;
+  height: 16px;
+  cursor: pointer;
+  margin: 0;
+}
+
+.filter-checkbox span {
+  white-space: nowrap;
+}
+
+/* ---------- YouTube-Videoreihe ---------- */
+.video-row {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 20px;             /* Abstand zwischen den Videos */
+  flex-wrap: wrap;       /* bricht sauber um auf kleinen Bildschirmen */
+}
+
+.video-row iframe {
+  width: 560px;
+  height: 315px;
+  max-width: 100%;
+  border-radius: 8px;
+  flex: 1 1 45%;         /* beide teilen sich gleichmäßig den Platz */
+}
+
+/* ---------- Sammler-Badge ---------- */
+.collector-badge {
+  display: flex;
+  justify-content: center;
+  margin-top: 4px;
+}
+
+.collector-badge .collector-img {
+  width: 40px;        /* Größe wie die Bestands-Punkte, ggf. anpassen */
+  height: auto;
+  filter: drop-shadow(0 0 6px rgba(212,175,55,0.6));
+  transition: transform 0.2s ease, filter 0.2s ease;
+}
+
+.collector-badge .collector-img:hover {
+  transform: scale(1.1);
+  filter: drop-shadow(0 0 10px rgba(212,175,55,0.9));
+}
+
+    /* ==========================================================
+       PLI INFOBOX (Tooltip/Popup)
+       ========================================================== */
+    .pli-label-wrap{
+      display:flex;
+      align-items:center;
+      gap:8px;
+      min-width:0;
+    }
+ 
+    .info-link{
+      cursor: pointer;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1;
+      margin-left: 4px;
+    }
+
+    .info-link:hover{
+      color: var(--accent, #d4af37);
+    }
+
+    body:not(.dark) .info-btn{
+      background: rgba(0,0,0,0.05);
+      border:1px solid rgba(0,0,0,0.18);
+    }
+    .info-btn:hover{
+      border-color: rgba(212,175,55,0.65);
+    }
+    .pli-infobox{
+      position: fixed;
+      inset: 0;
+      display:none;
+      align-items:center;
+      justify-content:center;
+      background: rgba(0,0,0,0.55);
+      padding: 18px;
+      z-index: 9999;
+    }
+    .pli-infobox.open{ display:flex; }
+    .pli-infobox-card{
+      width: min(720px, 100%);
+      max-height: min(80vh, 720px);
+      overflow:auto;
+      background: var(--card);
+      border:1px solid var(--border);
+      border-radius: 12px;
+      padding: 14px 14px 10px;
+      box-shadow: 0 10px 30px rgba(0,0,0,.35);
+    }
+    .pli-infobox-head{
+      display:flex;
+      align-items:flex-start;
+      justify-content:space-between;
+      gap:12px;
+      margin-bottom: 8px;
+    }
+    .pli-infobox-title{
+      margin:0;
+      font-size: 1.05rem;
+    }
+    .pli-infobox-close{
+      border:1px solid var(--border);
+      background: transparent;
+      color: inherit;
+      border-radius: 10px;
+      padding: 6px 10px;
+      cursor:pointer;
+    }
+    .pli-infobox-close:hover{
+      border-color: rgba(212,175,55,0.55);
+    }
+    .pli-infobox-card p{ margin: 8px 0; }
+    .pli-scale{
+      margin: 10px 0 6px;
+      padding-left: 18px;
+    }
+    .pli-scale li{ margin: 4px 0; }
+    
+    .rating-popup .pli-infobox-card{
+      width: min(320px, 100%);
+    }
+
+/* Hide scrollbars (Whisky-View) */
+html, body{
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE/Edge legacy */
+}
+html::-webkit-scrollbar, body::-webkit-scrollbar{
+  width: 0;
+  height: 0;
+}
+
+/* Hide scrollbar inside PLI-Infobox (if content scrolls) */
+.pli-infobox-card{
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.pli-infobox-card::-webkit-scrollbar{
+  width: 0;
+  height: 0;
+}

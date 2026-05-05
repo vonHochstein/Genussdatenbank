@@ -1,0 +1,726 @@
+body{
+  margin: 0;
+}
+
+*{
+  box-sizing: border-box;
+}
+
+.page-content{
+  padding: 0;
+}
+
+.dashboard-wrap{
+  display:flex;
+  flex-direction:column;
+  gap:12px;
+}
+
+.dashboard-grid{
+  display:grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap:10px;
+}
+
+.dashboard-stat{
+  display:flex;
+  flex-direction:column;
+  gap:6px;
+  min-height:96px;
+  justify-content:center;
+  padding:12px 14px;
+}
+
+.dashboard-stat-value{
+  font-size:1.55rem;
+  font-weight:700;
+  line-height:1.05;
+}
+
+.dashboard-stat-label{
+  color:var(--muted);
+  font-size:.92rem;
+}
+
+.dashboard-section-head{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
+  margin-bottom:8px;
+}
+
+.dashboard-list{
+  display:flex;
+  flex-direction:column;
+  gap:8px;
+}
+
+.dashboard-list-item{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+  padding:10px 12px;
+  border:1px solid var(--border);
+  border-radius:8px;
+  background:var(--card);
+  min-height:48px;
+}
+
+.dashboard-list-item-title{
+  font-weight:600;
+  line-height:1.2;
+}
+
+.dashboard-list-item-meta{
+  color:var(--muted);
+  font-size:.9rem;
+  text-align:right;
+  white-space:nowrap;
+  flex-shrink:0;
+}
+
+.dashboard-empty{
+  color:var(--muted);
+  padding:6px 0;
+}
+
+.dashboard-country-list{
+  display:grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap:10px;
+}
+
+.dashboard-country-card{
+  border:1px solid var(--border);
+  border-radius:8px;
+  padding:10px 12px;
+  background:var(--card);
+  min-height:64px;
+}
+
+.dashboard-country-title{
+  font-weight:600;
+  margin-bottom:4px;
+  line-height:1.2;
+}
+
+.dashboard-country-meta{
+  color:var(--muted);
+  font-size:.9rem;
+}
+
+.dashboard-map-toolbar{
+  display:flex;
+  align-items:center;
+  justify-content:flex-start;
+  gap:12px;
+  margin-bottom:10px;
+  padding:10px 12px;
+  border:1px solid rgba(177,120,40,0.16);
+  border-radius:8px;
+  background:rgba(255,255,255,0.02);
+}
+
+.dashboard-map-status-wrap{
+  display:flex;
+  flex-direction:column;
+  gap:2px;
+}
+
+.dashboard-map-status-label{
+  color:var(--muted);
+  font-size:.8rem;
+}
+
+.dashboard-map-status-value{
+  font-weight:600;
+  line-height:1.2;
+}
+
+
+.dashboard-map-wrap{
+  position:relative;
+  width:100%;
+  border:1px solid rgba(177,120,40,0.28);
+  border-radius:10px;
+  overflow:hidden;
+  background:transparent;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.03);
+}
+
+.dashboard-world-map{
+  position:relative;
+  width:100%;
+  display:block;
+  padding:14px;
+}
+
+.dashboard-world-map .dashboard-empty{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  width:100%;
+  min-height:392px;
+  border:1px dashed rgba(177,120,40,0.26);
+  border-radius:8px;
+  color:rgba(255,255,255,0.7);
+  background:rgba(255,255,255,0.015);
+  text-align:center;
+  padding:20px;
+}
+
+.dashboard-map-stage{
+  position:relative;
+  width:100%;
+  display:block;
+  background:transparent;
+}
+
+.dashboard-map-stage--world{
+  padding:12px;
+}
+
+.dashboard-map-svg{
+  display:block;
+  width:100%;
+  height:auto;
+  max-width:100%;
+}
+
+
+.dashboard-map-stage .dashboard-map-svg{
+  filter:drop-shadow(0 0 8px rgba(0,0,0,0.22));
+}
+
+#dashboardWorldSvg,
+#dashboardGermanySvg,
+#dashboardScotlandSvg,
+#dashboardUkSvg,
+#dashboardUsaSvg{
+  overflow:visible;
+}
+
+#dashboardWorldSvg path,
+#dashboardWorldSvg polygon,
+#dashboardWorldSvg rect,
+#dashboardWorldSvg circle,
+#dashboardWorldSvg ellipse{
+  fill:rgba(70,70,70,0.96) !important;
+  stroke:#b17828 !important;
+  stroke-width:0.9 !important;
+  stroke-linejoin:round !important;
+  stroke-linecap:round !important;
+}
+
+#dashboardUsaSvg #Canada,
+#dashboardUsaSvg #Mexico,
+#dashboardUsaSvg #Canada_inset,
+#dashboardUsaSvg #water{
+  fill:rgba(52,52,52,0.96) !important;
+  stroke:#8a6a31 !important;
+  stroke-width:0.9 !important;
+}
+
+#dashboardGermanySvg [data-map-region],
+#dashboardScotlandSvg [data-map-region],
+#dashboardUkSvg [data-map-region],
+#dashboardUsaSvg #States [data-map-region]{
+  fill:rgba(70,70,70,0.96) !important;
+  stroke:#b17828 !important;
+  stroke-width:0.9 !important;
+  stroke-linejoin:round !important;
+  stroke-linecap:round !important;
+}
+
+#dashboardScotlandSvg #scotland-lowlands,
+#dashboardScotlandSvg #scotland-highlands,
+#dashboardScotlandSvg #scotland-speyside,
+#dashboardScotlandSvg #scotland-islands,
+#dashboardScotlandSvg #scotland-campbeltown,
+#dashboardScotlandSvg #scotland-islay{
+  fill:rgba(70,70,70,0.96) !important;
+  stroke:#b17828 !important;
+  stroke-width:0.9 !important;
+  stroke-linejoin:round !important;
+  stroke-linecap:round !important;
+}
+
+#dashboardGermanySvg [data-map-region] path,
+#dashboardGermanySvg [data-map-region] polygon,
+#dashboardGermanySvg [data-map-region] rect,
+#dashboardGermanySvg [data-map-region] circle,
+#dashboardGermanySvg [data-map-region] ellipse,
+#dashboardScotlandSvg [data-map-region] path,
+#dashboardScotlandSvg [data-map-region] polygon,
+#dashboardScotlandSvg [data-map-region] rect,
+#dashboardScotlandSvg [data-map-region] circle,
+#dashboardScotlandSvg [data-map-region] ellipse,
+#dashboardUkSvg [data-map-region] path,
+#dashboardUkSvg [data-map-region] polygon,
+#dashboardUkSvg [data-map-region] rect,
+#dashboardUkSvg [data-map-region] circle,
+#dashboardUkSvg [data-map-region] ellipse,
+#dashboardUsaSvg #States [data-map-region] path,
+#dashboardUsaSvg #States [data-map-region] polygon,
+#dashboardUsaSvg #States [data-map-region] rect,
+#dashboardUsaSvg #States [data-map-region] circle,
+#dashboardUsaSvg #States [data-map-region] ellipse{
+  fill:rgba(70,70,70,0.96) !important;
+  stroke:#b17828 !important;
+  stroke-width:0.9 !important;
+  stroke-linejoin:round !important;
+  stroke-linecap:round !important;
+}
+
+#dashboardScotlandSvg #scotland-lowlands path,
+#dashboardScotlandSvg #scotland-lowlands polygon,
+#dashboardScotlandSvg #scotland-lowlands rect,
+#dashboardScotlandSvg #scotland-lowlands circle,
+#dashboardScotlandSvg #scotland-lowlands ellipse,
+#dashboardScotlandSvg #scotland-highlands path,
+#dashboardScotlandSvg #scotland-highlands polygon,
+#dashboardScotlandSvg #scotland-highlands rect,
+#dashboardScotlandSvg #scotland-highlands circle,
+#dashboardScotlandSvg #scotland-highlands ellipse,
+#dashboardScotlandSvg #scotland-speyside path,
+#dashboardScotlandSvg #scotland-speyside polygon,
+#dashboardScotlandSvg #scotland-speyside rect,
+#dashboardScotlandSvg #scotland-speyside circle,
+#dashboardScotlandSvg #scotland-speyside ellipse,
+#dashboardScotlandSvg #scotland-islands path,
+#dashboardScotlandSvg #scotland-islands polygon,
+#dashboardScotlandSvg #scotland-islands rect,
+#dashboardScotlandSvg #scotland-islands circle,
+#dashboardScotlandSvg #scotland-islands ellipse,
+#dashboardScotlandSvg #scotland-campbeltown path,
+#dashboardScotlandSvg #scotland-campbeltown polygon,
+#dashboardScotlandSvg #scotland-campbeltown rect,
+#dashboardScotlandSvg #scotland-campbeltown circle,
+#dashboardScotlandSvg #scotland-campbeltown ellipse,
+#dashboardScotlandSvg #scotland-islay path,
+#dashboardScotlandSvg #scotland-islay polygon,
+#dashboardScotlandSvg #scotland-islay rect,
+#dashboardScotlandSvg #scotland-islay circle,
+#dashboardScotlandSvg #scotland-islay ellipse{
+  fill:rgba(70,70,70,0.96) !important;
+  stroke:#b17828 !important;
+  stroke-width:0.9 !important;
+  stroke-linejoin:round !important;
+  stroke-linecap:round !important;
+}
+
+#dashboardWorldSvg [data-map-country].has-entries,
+#dashboardWorldSvg [data-map-country].has-entries path,
+#dashboardWorldSvg [data-map-country].has-entries polygon,
+#dashboardWorldSvg [data-map-country].has-entries rect,
+#dashboardWorldSvg [data-map-country].has-entries circle,
+#dashboardWorldSvg [data-map-country].has-entries ellipse{
+  fill:rgba(120,95,44,0.55) !important;
+}
+
+#dashboardScotlandSvg [data-map-region].has-entries,
+#dashboardScotlandSvg [data-map-region].has-entries path,
+#dashboardScotlandSvg [data-map-region].has-entries polygon,
+#dashboardScotlandSvg [data-map-region].has-entries rect,
+#dashboardScotlandSvg [data-map-region].has-entries circle,
+#dashboardScotlandSvg [data-map-region].has-entries ellipse{
+  fill:rgba(120,95,44,0.55) !important;
+}
+
+#dashboardUkSvg [data-map-region].has-entries,
+#dashboardUkSvg [data-map-region].has-entries path,
+#dashboardUkSvg [data-map-region].has-entries polygon,
+#dashboardUkSvg [data-map-region].has-entries rect,
+#dashboardUkSvg [data-map-region].has-entries circle,
+#dashboardUkSvg [data-map-region].has-entries ellipse{
+  fill:rgba(120,95,44,0.55) !important;
+}
+
+#dashboardUsaSvg #States [data-map-region].has-entries,
+#dashboardUsaSvg #States [data-map-region].has-entries path,
+#dashboardUsaSvg #States [data-map-region].has-entries polygon,
+#dashboardUsaSvg #States [data-map-region].has-entries rect,
+#dashboardUsaSvg #States [data-map-region].has-entries circle,
+#dashboardUsaSvg #States [data-map-region].has-entries ellipse{
+  fill:rgba(120,95,44,0.55) !important;
+}
+
+#dashboardScotlandSvg #scotland-lowlands.has-entries,
+#dashboardScotlandSvg #scotland-lowlands.has-entries path,
+#dashboardScotlandSvg #scotland-highlands.has-entries,
+#dashboardScotlandSvg #scotland-highlands.has-entries path,
+#dashboardScotlandSvg #scotland-speyside.has-entries,
+#dashboardScotlandSvg #scotland-speyside.has-entries path,
+#dashboardScotlandSvg #scotland-islands.has-entries,
+#dashboardScotlandSvg #scotland-islands.has-entries path,
+#dashboardScotlandSvg #scotland-campbeltown.has-entries,
+#dashboardScotlandSvg #scotland-campbeltown.has-entries path,
+#dashboardScotlandSvg #scotland-islay.has-entries,
+#dashboardScotlandSvg #scotland-islay.has-entries path{
+  fill:rgba(120,95,44,0.55) !important;
+}
+
+#dashboardWorldSvg [data-map-country]:hover,
+#dashboardWorldSvg [data-map-country]:hover path,
+#dashboardWorldSvg [data-map-country]:hover polygon,
+#dashboardWorldSvg [data-map-country]:hover rect,
+#dashboardWorldSvg [data-map-country]:hover circle,
+#dashboardWorldSvg [data-map-country]:hover ellipse,
+#dashboardWorldSvg [data-map-country].is-hovered,
+#dashboardWorldSvg [data-map-country].is-hovered path,
+#dashboardWorldSvg [data-map-country].is-hovered polygon,
+#dashboardWorldSvg [data-map-country].is-hovered rect,
+#dashboardWorldSvg [data-map-country].is-hovered circle,
+#dashboardWorldSvg [data-map-country].is-hovered ellipse,
+#dashboardWorldSvg [data-map-country].is-selected,
+#dashboardWorldSvg [data-map-country].is-selected path,
+#dashboardWorldSvg [data-map-country].is-selected polygon,
+#dashboardWorldSvg [data-map-country].is-selected rect,
+#dashboardWorldSvg [data-map-country].is-selected circle,
+#dashboardWorldSvg [data-map-country].is-selected ellipse{
+  fill:rgba(92,76,38,0.98) !important;
+  stroke:#d4af37 !important;
+}
+
+#dashboardGermanySvg [data-map-region].has-entries,
+#dashboardGermanySvg [data-map-region].has-entries path,
+#dashboardGermanySvg [data-map-region].has-entries polygon,
+#dashboardGermanySvg [data-map-region].has-entries rect,
+#dashboardGermanySvg [data-map-region].has-entries circle,
+#dashboardGermanySvg [data-map-region].has-entries ellipse{
+  fill:rgba(120,95,44,0.55) !important;
+}
+
+#dashboardGermanySvg [data-map-region]:hover,
+#dashboardGermanySvg [data-map-region]:hover path,
+#dashboardGermanySvg [data-map-region]:hover polygon,
+#dashboardGermanySvg [data-map-region]:hover rect,
+#dashboardGermanySvg [data-map-region]:hover circle,
+#dashboardGermanySvg [data-map-region]:hover ellipse,
+#dashboardGermanySvg [data-map-region].is-selected,
+#dashboardGermanySvg [data-map-region].is-selected path,
+#dashboardGermanySvg [data-map-region].is-selected polygon,
+#dashboardGermanySvg [data-map-region].is-selected rect,
+#dashboardGermanySvg [data-map-region].is-selected circle,
+#dashboardGermanySvg [data-map-region].is-selected ellipse,
+#dashboardScotlandSvg [data-map-region]:hover,
+#dashboardScotlandSvg [data-map-region]:hover path,
+#dashboardScotlandSvg [data-map-region]:hover polygon,
+#dashboardScotlandSvg [data-map-region]:hover rect,
+#dashboardScotlandSvg [data-map-region]:hover circle,
+#dashboardScotlandSvg [data-map-region]:hover ellipse,
+#dashboardScotlandSvg [data-map-region].is-selected,
+#dashboardScotlandSvg [data-map-region].is-selected path,
+#dashboardScotlandSvg [data-map-region].is-selected polygon,
+#dashboardScotlandSvg [data-map-region].is-selected rect,
+#dashboardScotlandSvg [data-map-region].is-selected circle,
+#dashboardScotlandSvg [data-map-region].is-selected ellipse,
+#dashboardUkSvg [data-map-region]:hover,
+#dashboardUkSvg [data-map-region]:hover path,
+#dashboardUkSvg [data-map-region]:hover polygon,
+#dashboardUkSvg [data-map-region]:hover rect,
+#dashboardUkSvg [data-map-region]:hover circle,
+#dashboardUkSvg [data-map-region]:hover ellipse,
+#dashboardUkSvg [data-map-region].is-selected,
+#dashboardUkSvg [data-map-region].is-selected path,
+#dashboardUkSvg [data-map-region].is-selected polygon,
+#dashboardUkSvg [data-map-region].is-selected rect,
+#dashboardUkSvg [data-map-region].is-selected circle,
+#dashboardUkSvg [data-map-region].is-selected ellipse,
+#dashboardUsaSvg #States [data-map-region]:hover,
+#dashboardUsaSvg #States [data-map-region]:hover path,
+#dashboardUsaSvg #States [data-map-region]:hover polygon,
+#dashboardUsaSvg #States [data-map-region]:hover rect,
+#dashboardUsaSvg #States [data-map-region]:hover circle,
+#dashboardUsaSvg #States [data-map-region]:hover ellipse,
+#dashboardUsaSvg #States [data-map-region].is-selected,
+#dashboardUsaSvg #States [data-map-region].is-selected path,
+#dashboardUsaSvg #States [data-map-region].is-selected polygon,
+#dashboardUsaSvg #States [data-map-region].is-selected rect,
+#dashboardUsaSvg #States [data-map-region].is-selected circle,
+#dashboardUsaSvg #States [data-map-region].is-selected ellipse{
+  fill:rgba(92,76,38,0.98) !important;
+  stroke:#d4af37 !important;
+}
+
+#dashboardScotlandSvg #scotland-lowlands:hover,
+#dashboardScotlandSvg #scotland-lowlands:hover path,
+#dashboardScotlandSvg #scotland-lowlands.is-selected,
+#dashboardScotlandSvg #scotland-lowlands.is-selected path,
+#dashboardScotlandSvg #scotland-highlands:hover,
+#dashboardScotlandSvg #scotland-highlands:hover path,
+#dashboardScotlandSvg #scotland-highlands.is-selected,
+#dashboardScotlandSvg #scotland-highlands.is-selected path,
+#dashboardScotlandSvg #scotland-speyside:hover,
+#dashboardScotlandSvg #scotland-speyside:hover path,
+#dashboardScotlandSvg #scotland-speyside.is-selected,
+#dashboardScotlandSvg #scotland-speyside.is-selected path,
+#dashboardScotlandSvg #scotland-islands:hover,
+#dashboardScotlandSvg #scotland-islands:hover path,
+#dashboardScotlandSvg #scotland-islands.is-selected,
+#dashboardScotlandSvg #scotland-islands.is-selected path,
+#dashboardScotlandSvg #scotland-campbeltown:hover,
+#dashboardScotlandSvg #scotland-campbeltown:hover path,
+#dashboardScotlandSvg #scotland-campbeltown.is-selected,
+#dashboardScotlandSvg #scotland-campbeltown.is-selected path,
+#dashboardScotlandSvg #scotland-islay:hover,
+#dashboardScotlandSvg #scotland-islay:hover path,
+#dashboardScotlandSvg #scotland-islay.is-selected,
+#dashboardScotlandSvg #scotland-islay.is-selected path{
+  fill:rgba(92,76,38,0.98) !important;
+  stroke:#d4af37 !important;
+}
+
+#dashboardWorldSvg [data-map-country],
+#dashboardGermanySvg [data-map-region],
+#dashboardGermanySvg [data-map-region] path,
+#dashboardGermanySvg [data-map-region] polygon,
+#dashboardGermanySvg [data-map-region] rect,
+#dashboardGermanySvg [data-map-region] circle,
+#dashboardGermanySvg [data-map-region] ellipse,
+#dashboardScotlandSvg [data-map-region],
+#dashboardScotlandSvg [data-map-region] path,
+#dashboardScotlandSvg [data-map-region] polygon,
+#dashboardScotlandSvg [data-map-region] rect,
+#dashboardScotlandSvg [data-map-region] circle,
+#dashboardScotlandSvg [data-map-region] ellipse,
+#dashboardUkSvg [data-map-region],
+#dashboardUkSvg [data-map-region] path,
+#dashboardUkSvg [data-map-region] polygon,
+#dashboardUkSvg [data-map-region] rect,
+#dashboardUkSvg [data-map-region] circle,
+#dashboardUkSvg [data-map-region] ellipse,
+#dashboardUsaSvg #States [data-map-region],
+#dashboardUsaSvg #States [data-map-region] path,
+#dashboardUsaSvg #States [data-map-region] polygon,
+#dashboardUsaSvg #States [data-map-region] rect,
+#dashboardUsaSvg #States [data-map-region] circle,
+#dashboardUsaSvg #States [data-map-region] ellipse{
+  cursor:pointer;
+}
+
+#dashboardWorldSvg [data-map-country]:focus,
+#dashboardGermanySvg [data-map-region]:focus,
+#dashboardScotlandSvg [data-map-region]:focus,
+#dashboardUkSvg [data-map-region]:focus,
+#dashboardUsaSvg #States [data-map-region]:focus{
+  outline:none;
+}
+
+#dashboardWorldSvg [data-map-country]:focus-visible,
+#dashboardGermanySvg [data-map-region]:focus-visible,
+#dashboardGermanySvg [data-map-region]:focus-visible path,
+#dashboardGermanySvg [data-map-region]:focus-visible polygon,
+#dashboardGermanySvg [data-map-region]:focus-visible rect,
+#dashboardGermanySvg [data-map-region]:focus-visible circle,
+#dashboardGermanySvg [data-map-region]:focus-visible ellipse,
+#dashboardScotlandSvg [data-map-region]:focus-visible,
+#dashboardScotlandSvg [data-map-region]:focus-visible path,
+#dashboardScotlandSvg [data-map-region]:focus-visible polygon,
+#dashboardScotlandSvg [data-map-region]:focus-visible rect,
+#dashboardScotlandSvg [data-map-region]:focus-visible circle,
+#dashboardScotlandSvg [data-map-region]:focus-visible ellipse,
+#dashboardUkSvg [data-map-region]:focus-visible,
+#dashboardUkSvg [data-map-region]:focus-visible path,
+#dashboardUkSvg [data-map-region]:focus-visible polygon,
+#dashboardUkSvg [data-map-region]:focus-visible rect,
+#dashboardUkSvg [data-map-region]:focus-visible circle,
+#dashboardUkSvg [data-map-region]:focus-visible ellipse,
+#dashboardUsaSvg #States [data-map-region]:focus-visible,
+#dashboardUsaSvg #States [data-map-region]:focus-visible path,
+#dashboardUsaSvg #States [data-map-region]:focus-visible polygon,
+#dashboardUsaSvg #States [data-map-region]:focus-visible rect,
+#dashboardUsaSvg #States [data-map-region]:focus-visible circle,
+#dashboardUsaSvg #States [data-map-region]:focus-visible ellipse{
+  filter:drop-shadow(0 0 3px rgba(212,175,55,0.55));
+}
+
+#dashboardGermanySvg{
+  width:100%;
+  max-width:520px;
+  margin:0 auto;
+}
+
+#dashboardScotlandSvg{
+  width:100%;
+  max-width:520px;
+  margin:0 auto;
+}
+
+#dashboardScotlandSvg #path4055,
+#dashboardScotlandSvg #rect2003{
+  fill:rgba(52,52,52,0.96) !important;
+  stroke:none !important;
+}
+
+#dashboardUkSvg{
+  width:100%;
+  max-width:520px;
+  margin:0 auto;
+}
+
+#dashboardUkSvg #rect_sea,
+#dashboardUkSvg #path_FR_mainland{
+  fill:rgba(52,52,52,0.96) !important;
+  stroke:none !important;
+}
+
+#dashboardUsaSvg{
+  width:100%;
+  max-width:720px;
+  margin:0 auto;
+}
+
+#dashboardUsaSvg #Country_borders path{
+  fill:none !important;
+  stroke:#b17828 !important;
+  stroke-width:0.9 !important;
+  stroke-linejoin:round !important;
+  stroke-linecap:round !important;
+}
+
+#dashboardUsaSvg #Canada,
+#dashboardUsaSvg #Mexico,
+#dashboardUsaSvg #Canada_inset{
+  fill:rgba(52,52,52,0.96) !important;
+  stroke:none !important;
+}
+
+#dashboardUsaSvg #water{
+  fill:none !important;
+  stroke:none !important;
+}
+
+.dashboard-map-stage--country-regions{
+  padding:12px;
+}
+
+#dashboardGermanySvg .Bundesrepublik_Deutschland,
+#dashboardGermanySvg #Bundesrepublik_Deutschland{
+  fill:none !important;
+  stroke:none !important;
+}
+
+.dashboard-map-selection-active{
+  color:#b17828;
+}
+
+.dashboard-care-block{
+  display:flex;
+  flex-direction:column;
+  gap:8px;
+}
+
+.dashboard-care-toggle{
+  width:100%;
+  text-align:left;
+  position:relative;
+  transition:border-color .12s ease, box-shadow .12s ease;
+}
+
+.dashboard-care-toggle::after{
+  content:"▾";
+  font-size:0.95rem;
+  color:var(--muted);
+  margin-left:auto;
+  flex-shrink:0;
+}
+
+.dashboard-care-toggle.is-open{
+  border-color:#b17828;
+  box-shadow:0 0 0 1px rgba(177,120,40,0.18);
+}
+
+.dashboard-care-toggle.is-open::after{
+  content:"▴";
+  color:#b17828;
+}
+
+.dashboard-care-details{
+  display:flex;
+  flex-direction:column;
+  gap:6px;
+  padding:8px 0 2px 14px;
+  border-left:2px solid rgba(177,120,40,0.35);
+  margin-left:6px;
+}
+
+.dashboard-care-detail-item{
+  width:100%;
+  text-align:left;
+  justify-content:flex-start;
+  align-items:flex-start;
+  flex-direction:column;
+  gap:4px;
+  padding:9px 12px;
+  min-height:auto;
+  background:transparent;
+  border:1px solid rgba(177,120,40,0.18);
+}
+
+.dashboard-care-detail-item:hover{
+  border-color:#b17828;
+  box-shadow:0 0 0 1px rgba(177,120,40,0.18);
+}
+
+.dashboard-care-detail-item .dashboard-list-item-meta{
+  text-align:left;
+  white-space:normal;
+}
+
+@media (max-width: 640px){
+  .dashboard-grid{
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .dashboard-stat{
+    min-height:84px;
+    padding:10px 12px;
+  }
+
+  .dashboard-stat-value{
+    font-size:1.35rem;
+  }
+
+  .dashboard-list-item{
+    flex-direction:column;
+    align-items:flex-start;
+  }
+
+  .dashboard-list-item-meta{
+    text-align:left;
+    white-space:normal;
+  }
+
+  .dashboard-care-details{
+    padding-left:10px;
+    margin-left:2px;
+  }
+
+  .dashboard-map-toolbar{
+    flex-direction:column;
+    align-items:flex-start;
+  }
+
+
+  .dashboard-map-wrap{
+    min-height:340px;
+  }
+
+  .dashboard-world-map{
+    padding:10px;
+  }
+
+  .dashboard-world-map .dashboard-empty{
+    min-height:318px;
+    padding:16px;
+  }
+}
+
+@media (max-width: 420px){
+  .dashboard-grid{
+    grid-template-columns: 1fr;
+  }
+}
